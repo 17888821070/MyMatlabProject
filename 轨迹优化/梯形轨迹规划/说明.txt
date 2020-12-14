@@ -1,0 +1,8 @@
+DH_Ti    将单关节DH参数转换为T矩阵Tii-1
+GetTnm   输入关节角q=[q1 q2 q3 q4 q5 q6 q7],m,n得到{n}{m}的变换矩阵
+kinematic_model运动学建模，得到T70
+GetTn0_toolbox toolbox验证运动学建模
+
+GetW	 输入七个角度变化得到角度—时间，角速度—时间，角加速度—时间列表
+robotdata机械臂参数数据中间程序
+Newton   牛顿-欧拉动力学建模，通过GetW得到角度，角速度，角加速度，输出个关节角力矩
