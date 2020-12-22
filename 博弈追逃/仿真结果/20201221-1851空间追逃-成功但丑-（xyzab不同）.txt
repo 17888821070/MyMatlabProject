@@ -1,0 +1,50 @@
+﻿clear;
+%%%%%%%% 基本配置量
+%总时间T
+T=1000;
+%步长
+dt=0.1;
+%总步数
+n=T/dt;
+%单次博弈离散步长
+onedt=0.01;
+%追逃成功距离
+endDistance = 100;
+
+%%%%%%%% 初始状态
+%追捕卫星
+Xp=[0,0,0,pi/2,pi/2]; %a,y,z,α，β
+% Xp=[0,0,0,pi/3,0]; %a,y,z,α，β
+% Xp=[0,0,0,0,pi/3]; %a,y,z,α，β
+% Xp=[0,0,0,0,0];
+Vpmax=10;
+
+%逃逸卫星
+Xe=[1000,1000,1000,0,0]; %a,y,z,α，β
+Vemax = 8;
+
+%%%%%%%% 策略集
+%追捕卫星
+maxUp = pi;
+dUp = pi/20;
+sizUp=maxUp/dUp*2+1;
+Up=[-1*maxUp:dUp:maxUp;-1*maxUp:dUp:maxUp;];%
+% 逃逸卫星
+maxUe = pi;
+dUe = pi/10;
+Ue=[-1*maxUe:dUe:maxUe;-1*maxUe:dUe:maxUe;];%
+sizUe=maxUe/dUe*2+1;
+
+%%%%%%%% 离散博弈 t0~tf
+%离散数据集,p表示追，e表示逃，行表示第i时刻的状态
+Xpt=zeros(n+1,5); % 1x,2y,3z,4α，5β，6vx,7vy,8vz
+Xet=zeros(n+1,5);
+Upt=zeros(n+1,2);
+Uet=zeros(n+1,2);
+%t0时刻
+Xpt(1,:)=Xp;
+Xet(1,:)=Xe;
+%支付J
+J=zeros(n+1,1);
+
+说明：位置xyz和俯仰角αβ不同，捕获成功，8628步成功捕获,但图像最后绕圈了，很丑

@@ -4,13 +4,13 @@
 %%%输出：关节角序列n*7
 %%%
 
-function angles = QIQEtoAngles(qini,qend)
+function angles = QIQEtoAngles(qini,qend,tf,ts,t0)
 
 %机械臂关节运动角度
 dq=qend-qini;
-tf=20;
-ts=8;
-t0=0.05;
+% tf=20;
+% ts=8;
+% t0=0.05;
 
 syms x;
 

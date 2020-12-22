@@ -1,0 +1,50 @@
+﻿空间追逃1：
+clear;
+%%%%%%%% 基本配置量
+%总时间T
+T=500;
+%步长
+dt=0.1;
+%总步数
+n=T/dt;
+%单次博弈离散步长
+onedt=0.001;
+%追逃成功距离
+endDistance = 100;
+
+%%%%%%%% 初始状态
+%追捕卫星
+Xp=[0,0,0,pi/2,pi/3]; %a,y,z,α，β
+% Xp=[0,0,0,0,0];
+Vpmax=10;
+
+%逃逸卫星
+Xe=[500,0,0,0,0]; %a,y,z,α，β
+Vemax = 5;
+
+%%%%%%%% 策略集
+%追捕卫星
+maxUp = 2*pi;
+dUp = pi/20;
+sizUp=maxUp/dUp*2+1;
+Up=[-1*maxUp:dUp:maxUp;-1*maxUp:dUp:maxUp;];%
+% 逃逸卫星
+maxUe = 2*pi;
+dUe = pi/20;
+Ue=[-1*maxUe:dUe:maxUe;-1*maxUe:dUe:maxUe;];%
+sizUe=maxUe/dUe*2+1;
+
+%%%%%%%% 离散博弈 t0~tf
+%离散数据集,p表示追，e表示逃，行表示第i时刻的状态
+Xpt=zeros(n+1,8); % 1x,2y,3z,4α，5β，6vx,7vy,8vz
+Xet=zeros(n+1,8);
+Upt=zeros(n+1,2);
+Uet=zeros(n+1,2);
+%t0时刻
+Xpt(1,:)=[Xp,0,0,0];
+Xet(1,:)=[Xe,0,0,0];
+%支付J
+J=zeros(n+1,1);
+
+此版本说明，基本实现追捕，此数据有x,α，β不同，y,z,相同
+此版本缺陷：结束博弈后，跳出博弈循环，以设定数据绘图会导致曲线丑陋

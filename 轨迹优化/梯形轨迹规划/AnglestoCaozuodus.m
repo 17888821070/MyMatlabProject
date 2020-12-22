@@ -4,9 +4,9 @@
 %%%输出：这组关节角的可操作度n*1
 %%%
 function solution = AnglestoCaozuodus(angles)
-angNum= length(angles)
+angNum= length(angles);
 Caozuodus=zeros(angNum,1);
 for i=1:angNum
-    Caozuodus(i)=CaozuoduOfAngles(angles(i,:));
+    Caozuodus(i)=CaozuoduOfAngle(angles(i,:));
 end
 solution=Caozuodus;
